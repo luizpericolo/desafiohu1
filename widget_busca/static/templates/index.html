@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>Busca Hotéis</title>
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+		<script src="/static/js/jquery-1.9.1.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/bootstrap-typeahead.js"></script>
+		<script src="/static/js/autocomplete-typeahead.js"></script>
+		
+		
+	</head>
+	<body>
+		<form action='{% url "busca-disponibilidade" %}' role="form" method="post">
+			{% csrf_token %}
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-md-offset-5">
+						<h3><i class="glyphicon glyphicon-home"></i> HOTÉIS </h3>	
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-4">
+						<h4>+ 17.000 hotéis, pousadas e resorts no mundo todo.</h4>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<p> Quer ficar onde? </p>
+						<div class="form-group has-feedback">
+							<input type="text" id="busca-cidade-hotel" class="form-control" name="cidade_hotel" placeholder="cidade ou hotel"/>
+							<i class="form-control-feedback glyphicon glyphicon-globe"></i>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<p> Quando? (entrada e saída) </p>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group has-feedback">
+									<input type="text" class="form-control" name="entrada" placeholder="entrada"/>
+									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group has-feedback has-feedback-left">
+									<input type="text" class="form-control" name="saida" placeholder="saída"/>
+									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
+								</div>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-md-5">
+								<input type="checkbox" value='periodo_indefinido'>
+								Ainda não defini as datas
+							</div>
+						</div>	
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-5">
+						<button class="btn btn-warning" type="submit"><i class="glyphicon glyphicon-search"></i>&nbsp;Buscar</button>
+					</div>
+				</div>
+				
+
+				
+				
+			</div>
+			
+		</form>
+	</body>
+</html>

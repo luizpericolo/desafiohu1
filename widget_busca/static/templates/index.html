@@ -15,7 +15,7 @@
 		
 	</head>
 	<body>
-		<form action='{% url "busca-disponibilidade" %}' role="form" method="post">
+		<form action='{% url "busca-disponibilidade" %}' role="form" method="post" data-toggle="validator">
 			{% csrf_token %}
 			<div class="container">
 				<div class="row">
@@ -34,7 +34,7 @@
 					<div class="col-md-2 col-md-offset-3">
 						<p> Quer ficar onde? </p>
 						<div class="form-group has-feedback">
-							<input type="text" id="busca-cidade-hotel" class="form-control" name="cidade_hotel" placeholder="cidade ou hotel"/>
+							<input required type="text" id="busca-cidade-hotel" class="form-control" name="cidade_hotel" placeholder="cidade ou hotel"/>
 							<input type="hidden" name="cidade_hotel_type" id="cidade_hotel_type" />
 							<input type="hidden" name="cidade_hotel_id" id="cidade_hotel_id" />
 							<i class="form-control-feedback glyphicon glyphicon-globe"></i>
@@ -58,7 +58,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-5">
-								<input type="checkbox" value='periodo_indefinido'>
+								<input type="checkbox" name='periodo_indefinido' id="periodo_indefinido">
 								Ainda não defini as datas
 							</div>
 						</div>	

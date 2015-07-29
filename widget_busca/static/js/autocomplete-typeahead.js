@@ -10,6 +10,14 @@ $(document).ready(function(){
 				}
 			});
 		},
-		property: "name"
+		property: "name",
+		//Redefinindo o evento de selecionar um item do autocomplete
+		onselect: function(obj){
+			//Colocamos como valor do input o valor do atributo typeahead_name do item.
+			$("#busca-cidade-hotel").val(obj['typeahead_name']);
+			// Salvamos nos campos hidden o seu id e o seu tipo
+			$('input#cidade_hotel_id').val(obj.id)
+			$('input#cidade_hotel_type').val(obj.type)
+		}
 	});
 });

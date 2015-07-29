@@ -14,5 +14,9 @@ class Cidade(BaseModel):
 
 	@classmethod
 	def search(cls, arg):
-		return cls.objects.filter(nome__icontains=arg)
+		cidades = cls.objects.filter(nome__icontains=arg)
+		# typeahead_name é o nome da propriedade que será utlizada para popular o input com o nome da cidade quando ela for selecionada.
+		return [{'id': cidade.id, 'typeahead_name': u"{}".format(cidade.nome), 'name': u"{}".format(cidade.nome), 'type': 'cidade'} for cidade in cidades]
+
+
 

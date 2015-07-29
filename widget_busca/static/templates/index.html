@@ -2,9 +2,14 @@
 	<head>
 		<title>Busca Hotéis</title>
 		<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/css/datepicker.css">
 
 		<script src="/static/js/jquery-1.9.1.min.js"></script>
 		<script src="/static/js/bootstrap.min.js"></script>
+
+		<script src="/static/js/bootstrap-datepicker.js"></script>
+		<script src="/static/js/custom-datepicker.js"></script>
+
 		<script src="/static/js/bootstrap-typeahead.js"></script>
 		<script src="/static/js/autocomplete-typeahead.js"></script>
 		
@@ -38,15 +43,15 @@
 					<div class="col-md-6">
 						<p> Quando? (entrada e saída) </p>
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<div class="form-group has-feedback">
-									<input type="text" class="form-control" name="entrada" placeholder="entrada"/>
+									<input required type="text" id="data_entrada" class="datepicker form-control" name="entrada" placeholder="entrada"/>
 									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<div class="form-group has-feedback has-feedback-left">
-									<input type="text" class="form-control" name="saida" placeholder="saída"/>
+									<input required type="text" id="data_saida" class="datepicker form-control" name="saida" placeholder="saída"/>
 									<i class="form-control-feedback glyphicon glyphicon-calendar"></i>
 								</div>
 							</div>	

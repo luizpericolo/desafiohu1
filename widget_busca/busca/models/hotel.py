@@ -11,5 +11,11 @@ class Hotel(BaseModel):
 		app_label = 'busca'
 
 	def unicode(self):
-		return u"[Id]{} [Nome]{} [Cidade]{}".format(self.id, self.nome, self.cidade.nome) 
+		return u"[Id]{} [Nome]{} [Cidade]{}".format(self.id, self.nome, self.cidade.nome)
+
+	@classmethod
+	def search(cls, arg):
+		hoteis = cls.objects.filter(nome__icontains=arg)
+		# typeahead_name é o nome da propriedade que será utlizada para popular o input com o nome do hotel quando ele for selecionado, sem incluir o nome da cidade.
+		return [{'id': hotel.id, 'typeahead_name': u'{}'.format(hotel.nome), 'name': u'{}, {}'.format(hotel.nome, hotel.cidade.nome), 'type': 'hotel'} for hotel in hoteis]
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
-# Create your views here.
+
+from busca.models import Hotel, Cidade
 
 from busca.forms import BuscaHotelForm
 
@@ -11,6 +12,10 @@ def busca_disponibilidade(request):
 	return render(request, 'disponibilidade.html', {})
 
 def autocomplete_hotel_cidade(request):
-	response = JsonResponse([{'id': 10, "name": 'Test'}], safe=False)
+	query = request.GET.get('q', None)
 
-	return response
+	if query:
+		hoteis = Hotel.search(query)
+		cidades = Cidade.search(query)
+
+	return JsonResponse(hoteis+cidades, safe=False)

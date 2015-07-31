@@ -1,7 +1,9 @@
+# coding: utf-8
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse
 
-from busca.models import Hotel, Cidade
+from busca.models import Hotel, Cidade, Disponibilidade
 
 from busca.forms import BuscaHotelForm
 

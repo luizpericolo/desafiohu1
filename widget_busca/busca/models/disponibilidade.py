@@ -5,6 +5,7 @@ from busca.models import BaseModel
 
 class DisponibilidadeManager(models.Manager):
 	def por_hotel_periodo(self, hotel, entrada, saida):
+		u""" Pegando as disponibilidades de um dado hotel em um dado período. """
 		return self.filter(hotel=hotel, data__gte=entrada, data__lte=saida, disponivel=True)
 
 class Disponibilidade(BaseModel):

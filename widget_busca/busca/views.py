@@ -39,7 +39,7 @@ def busca_disponibilidade(request):
 	elif tipo_busca == 'hotel':
 		# Se buscamos por hotel, só queremos saber de um em específico.
 		try:
-			hoteis = get_object_or_404(Hotel, id=id_busca)
+			hoteis = [get_object_or_404(Hotel, id=id_busca)]
 		except Http404:
 			return JsonResponse({'success': False, 'message': 'Erro! O hotel não existe!'})
 	else:

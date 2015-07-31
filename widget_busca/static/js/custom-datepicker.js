@@ -6,10 +6,10 @@ $(document).ready(function(){
 
 	var entrada = $('.datepicker#data_entrada').datepicker({
 		format: 'dd/mm/yyyy',
-		onRender: function(date){
-			// Desabilitando todas as datas anterior a hoje.
+		/*onRender: function(date){
+			// Desabilitando todas as datas anteriores a hoje.
 			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-		}
+		}*/
 	}).on('changeDate', function(ev){
 		// Caso a nova data de entrada selecionada seja maior do que a data de saida.
 		if(ev.date.valueOf() > saida.date.valueOf()){

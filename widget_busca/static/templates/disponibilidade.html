@@ -6,28 +6,67 @@
 
 	<body>
 		<div class="container">
+			{% include "header.html" %}
 			{% if hoteis %}
 				<div class="row">
-					<h2> {{ mensagem_busca }} ({{ hoteis|length }} opções)</h2>
-				</div>
-				{% for hotel in hoteis %}
-					<div class="row">
-						<div class="col-md-offset-3">
-						<form action='{% url "detalhes-disponibilidade" %}' name="disponibilidade-{{hotel.id}}" role="form" method="post">
-							<input type="hidden" name="hotel_id" value="{{hotel.id}}"/>
-							<input type="hidden" name="data_chegada" value="{{chegada}}"/>
-							<input type="hidden" name="data_saida" value="{{saida}}"/>
-							{% csrf_token %}
-							<div class="col-md-4">
-								{{hotel.nome}}, {{hotel.cidade.nome}}
-							</div>
-							<div class="col-md-4">
-								<button class="btn btn-warning"> Ver Detalhe </button>
-							</div>
-						</form>
-						</div>
+					<div class="col-md-8">
+						<h4> {{ mensagem_busca }} ({{ hoteis|length }} opções)</h4>
 					</div>
-					<hr/>
+				</div>
+				<hr/>
+				{% for hotel in hoteis %}
+					<!-- Pegadinha! forloop.counter começa contando de 1, então a primeira é ímpar. -->
+					{% if forloop.counter|divisibleby:2 %}
+							<div class="col-md-6">
+								<form action='{% url "detalhes-disponibilidade" %}' name="disponibilidade-{{hotel.id}}" role="form" method="post">
+									<input type="hidden" name="hotel_id" value="{{hotel.id}}"/>
+									<input type="hidden" name="data_chegada" value="{{chegada}}"/>
+									<input type="hidden" name="data_saida" value="{{saida}}"/>
+									{% csrf_token %}
+									<div class="col-md-6">
+										{{hotel.nome}}, {{hotel.cidade.nome}}
+									</div>
+									<div class="col-md-4">
+										<button class="btn btn-warning"> Ver Detalhe </button>
+									</div>
+								</form>
+							</div>
+						</div>  <!-- Fechando a div row que estamos abrindo aqui embaixo, acredita em mim! -->
+						<hr/>
+					{% else %}
+						<div class="row">
+							<div class="col-md-6">
+								<form action='{% url "detalhes-disponibilidade" %}' name="disponibilidade-{{hotel.id}}" role="form" method="post">
+									<input type="hidden" name="hotel_id" value="{{hotel.id}}"/>
+									<input type="hidden" name="data_chegada" value="{{chegada}}"/>
+									<input type="hidden" name="data_saida" value="{{saida}}"/>
+									{% csrf_token %}
+									<div class="col-md-6">
+										{{hotel.nome}}, {{hotel.cidade.nome}}
+									</div>
+									<div class="col-md-4">
+										<button class="btn btn-warning"> Ver Detalhe </button>
+									</div>
+								</form>
+							</div>
+					{% endif %}
+					<!-- <div class="row">
+						<div class="col-md-offset-3">
+							<form action='{% url "detalhes-disponibilidade" %}' name="disponibilidade-{{hotel.id}}" role="form" method="post">
+								<input type="hidden" name="hotel_id" value="{{hotel.id}}"/>
+								<input type="hidden" name="data_chegada" value="{{chegada}}"/>
+								<input type="hidden" name="data_saida" value="{{saida}}"/>
+								{% csrf_token %}
+								<div class="col-md-4">
+									{{hotel.nome}}, {{hotel.cidade.nome}}
+								</div>
+								<div class="col-md-4">
+									<button class="btn btn-warning"> Ver Detalhe </button>
+								</div>
+							</form>
+						</div>
+					</div> -->
+					
 				{% endfor %}
 			{% else %}
 				<div class="row">

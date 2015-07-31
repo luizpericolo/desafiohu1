@@ -6,6 +6,7 @@ from busca.models import BaseModel
 
 class CidadeManager(models.Manager):
 	def todos_hoteis_cidade(self, cidade):
+		u""" Retorna todos os hotéis dessa cidade. """
 		return cidade.hotel_set.all()
 
 

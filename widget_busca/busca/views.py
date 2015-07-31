@@ -1,7 +1,9 @@
 # coding: utf-8
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
+import datetime
+
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, JsonResponse, Http404
 
 from busca.models import Hotel, Cidade, Disponibilidade
 
@@ -12,10 +14,6 @@ def index(request):
 
 def busca_disponibilidade(request):
 	u""" View que lista os hotéis que possuem disponibilidade independente do tipo de busca (Hotel ou Cidade, com ou sem período definido). """
-	import datetime
-
-	from django.http import Http404
-	from django.shortcuts import get_object_or_404
 
 	params = request.POST
 

@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r"^djtokeninput/", include("djtokeninput.urls")),
     url(r"^disponibilidade/$", views.busca_disponibilidade, name='busca-disponibilidade'),
+    url(r"^detalhes_disponibilidade/$", views.detalhes_disponibilidade, name='detalhes-disponibilidade'),
     url(r"^lookup/$",views.autocomplete_hotel_cidade),
     url(r"^$", views.index),
 ]

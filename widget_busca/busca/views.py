@@ -23,7 +23,7 @@ def busca_disponibilidade(request):
 	tipo_busca = params.get('busca_type', None)
 	chegada = params.get('entrada', None)
 	saida = params.get('saida', None)
-	periodo_indefinido = params.get('periodo_indefinido', None)
+	periodo_indefinido = 'periodo_indefinido' in params
 
 	dados = {}
 

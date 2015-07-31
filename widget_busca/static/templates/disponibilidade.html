@@ -14,11 +14,15 @@
 					<div class="row">
 						<div class="col-md-offset-3">
 						<form action='{% url "detalhes-disponibilidade" %}' name="disponibilidade-{{hotel.id}}" role="form" method="post">
+							<input type="hidden" name="hotel_id" value="{{hotel.id}}"/>
+							<input type="hidden" name="data_chegada" value="{{chegada}}"/>
+							<input type="hidden" name="data_saida" value="{{saida}}"/>
+							{% csrf_token %}
 							<div class="col-md-4">
 								{{hotel.nome}}, {{hotel.cidade.nome}}
 							</div>
 							<div class="col-md-4">
-								<button class="btn btn-warning" data-hotel-id="{{hotel.id}}" data-entrada="{{chegada}}" data-saida="{{saida}}"> Ver Detalhe </button>
+								<button class="btn btn-warning"> Ver Detalhe </button>
 							</div>
 						</form>
 						</div>

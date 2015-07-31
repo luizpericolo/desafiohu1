@@ -94,6 +94,7 @@ def detalhes_disponibilidade(request):
 	return render(request, 'detalhes_disponibilidade.html', dados)
 
 def autocomplete_hotel_cidade(request):
+	u""" View que retorna os resultados para o typeahead. """
 	query = request.GET.get('q', None)
 
 	if query:

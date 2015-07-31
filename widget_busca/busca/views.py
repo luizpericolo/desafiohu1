@@ -56,7 +56,7 @@ def busca_disponibilidade(request):
 		dt_saida = datetime.datetime.strptime(saida, "%d/%m/%Y")
 
 		# Caso contrário, pegamos apenas os hotéis que possuem disponibilidade de pelo menos um dia dentro do período
-		hoteis_periodo = filter(lambda h: Disponibilidade.objects.por_hotel_periodo(hotel=h, entrada=dt_chegada, saida=dt_saida).count() > 1, hoteis)
+		hoteis_periodo = filter(lambda h: h.tem_disponibilidade_no_periodo(data_chegada=dt_chegada, data_saida=dt_saida), hoteis)
 
 		dados['hoteis'] = [h.serializar() for h in hoteis_periodo]
 		dados['mensagem_busca'] = u"Você buscou por {} no período de {} a {}".format(busca, chegada, saida)

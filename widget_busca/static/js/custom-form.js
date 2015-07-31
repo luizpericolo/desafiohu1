@@ -4,9 +4,11 @@ $(document).ready(function(){
 	$('input#periodo_indefinido').click(function(event){
 		if($(event.target).is(":checked")){
 			$('.datepicker').removeAttr('required');
+			$('.datepicker').prop('disabled', true);
 		}
 		else{
-			$('.datepicker').addAttr('required');
+			$('.datepicker').attr('required', true);
+			$('.datepicker').prop('disabled', false);
 		}
 	});
 });

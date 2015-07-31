@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title> Detalhes Disponibilidade </title>
+		{% include "bootstrap.html" %}
+	</head>
+
+	<body>
+		
+		<div class="container">
+		{% include "header.html" %}
+			<div class="row">
+				<div class="col-md-4">
+					<h1>Hotel: {{hotel.nome}} </h1>	
+				</div>
+			</div>
+			<div class='row'>
+				<div class="col-md-4">
+				 	<h5>Cidade: {{hotel.cidade.nome}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					{% if chegada %}
+						<h4> Exibindo datas disponíveis no período {{chegada}} - {{saida}} ({{ disponibilidades|length }} opções)</h4>
+					{% else %}
+						<h4> Exibindo todas as datas disponíveis ({{ disponibilidades|length }} opções) </h4>
+					{% endif %}	
+
+				</div>
+			</div>
+			<hr/>
+				{% for disponibilidade in disponibilidades %}
+					{% if forloop.counter|divisibleby:2 %}
+						<!-- Pegadinha! forloop.counter começa contando de 1, então a primeira é ímpar. -->
+						
+							<div class="col-md-6">
+								<div class="col-md-4">
+									<h4>{{disponibilidade.data}}</h4>
+								</div>
+								<div class="col-md-4">
+									<button class="btn btn-warning" onclick="alert('click');"> Reservar </button>
+								</div>
+							</div>  <!-- Fechando a div row que estamos abrindo aqui embaixo, acredita em mim! -->
+						</div>
+						<hr/>
+					{% else %}
+						<div class="row">
+							<div class="col-md-6">
+									<div class="col-md-4">
+										<h4>{{disponibilidade.data}}</h4>
+									</div>
+									<div class="col-md-4">
+										<button class="btn btn-warning" onclick="alert('click');"> Reservar </button>
+									</div>
+								</div>
+					{% endif %}
+				{% empty %}
+					<div class="row">
+						<div class="col-md-offset-1">
+							<h4> Desculpe, mas esse hotel não possui reservas disponíveis nesse período, por favor refaça sua busca com outras datas. </h4>
+						</div>
+					</div>
+				{% endfor %}
+		</div>
+	</body>
+</html>

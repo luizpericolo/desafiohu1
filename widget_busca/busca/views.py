@@ -63,6 +63,36 @@ def busca_disponibilidade(request):
 
 	return render(request, 'disponibilidade.html', dados)
 
+def detalhes_disponibilidade(request):
+	u""" View que lista os dados de disponibilidade específicos de um hotel. """
+	params = request.POST
+
+	chegada = params.get('data_chegada', None)
+	saida = params.get('data_saida', None)
+	hotel_id = int(params.get('hotel_id', 0))
+
+	dados = {}
+
+	try:
+		hotel = get_object_or_404(Hotel, id=hotel_id)
+	except Http404:
+		return JsonResponse({'success': False, 'message': 'Erro! O Hotel não existe!'})
+
+	if chegada and saida:
+		dt_chegada = datetime.datetime.strptime(chegada, "%d/%m/%Y")
+		dt_saida = datetime.datetime.strptime(saida, "%d/%m/%Y")
+	else:
+		dt_chegada, dt_saida = None, None
+
+	disponibilidades = Disponibilidade.objects.por_hotel_periodo(hotel=hotel, data_chegada=dt_chegada, data_saida=dt_saida)
+
+	dados['disponibilidades'] = [d.serializar() for d in disponibilidades]
+	dados['hotel'] = hotel.serializar()
+	dados['chegada'] = chegada
+	dados['saida'] = saida
+
+	return render(request, 'detalhes_disponibilidade.html', dados)
+
 def autocomplete_hotel_cidade(request):
 	query = request.GET.get('q', None)
 

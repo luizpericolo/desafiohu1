@@ -37,7 +37,6 @@ def load_hoteis_cidades(apps, schema_editor):
 
 def load_disponibilidades(apps, schema_editor):
     import datetime
-    import pudb; pu.db
 
     print u"Criando disponibilidades..."
 

@@ -113,3 +113,6 @@ STATICFILES_DIRS = (
 HOTEIS_INITIAL = os.path.join(BASE_DIR, os.path.abspath('../artefatos/hoteis.txt'))
 
 DISPONIBILIDADES_INITIAL = os.path.join(BASE_DIR, os.path.abspath('../artefatos/disp.txt'))
+
+# Definindo onde os arquivos de fixture ficam para o django poder carregar durante os testes.
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)

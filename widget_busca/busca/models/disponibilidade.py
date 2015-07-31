@@ -4,9 +4,12 @@ from django.db import models
 from busca.models import BaseModel
 
 class DisponibilidadeManager(models.Manager):
-	def por_hotel_periodo(self, hotel, entrada, saida):
+	def por_hotel_periodo(self, hotel, data_chegada, data_saida):
 		u""" Pegando as disponibilidades de um dado hotel em um dado período. """
-		return self.filter(hotel=hotel, data__gte=entrada, data__lte=saida, disponivel=True)
+		if data_chegada and data_saida:
+			return self.filter(hotel=hotel, data__gte=data_chegada, data__lte=data_saida, disponivel=True)
+		else:
+			return self.filter(hotel=hotel, disponivel=True)
 
 class Disponibilidade(BaseModel):
 	hotel = models.ForeignKey('busca.Hotel', verbose_name=u"Hotel")

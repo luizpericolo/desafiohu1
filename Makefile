@@ -1,17 +1,25 @@
-install-dependencies:
-	@echo "Instalando as dependências..."
-	@apt-get install python-virtualenv
-	@virtualenv venv && source venv/bin/activate
+install-dependencies: configure-virtualenv
 	@echo "Instalando as dependências do pip..."
-	@pip install -r requirements.txt
+	@busca-venv/bin/pip install -r requirements.txt
+	@echo "Por favor execute o comando 'source busca-venv/bin/activate' para ativar o virtualenv e depois continue a instalação com 'make deploy'"
 
-install: install-dependencies deploy test run
+install: install-dependencies
+
+install-virtualenv:
+	@echo "Instalando virtualenv..."
+	@sudo easy_install virtualenv
+
+configure-virtualenv: install-virtualenv
+	@echo "Configurando virtualenvwrapper..."
+	@virtualenv busca-venv
 
 run:
 	@echo "Executando o servidor local..."
 	@python widget_busca/manage.py runserver
 
-deploy:
+deploy: sync-db test run
+
+sync-db:
 	@echo "Sincronizando o banco..."
 	@python widget_busca/manage.py syncdb
 	@echo "Importando os dados iniciais..."

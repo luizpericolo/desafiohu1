@@ -31,4 +31,4 @@ Para rodar o projeto, execute os seguintes comandos:
 5. make deploy
 
 Após executar esses comandos, o projeto estará diponível em ```localhost:8000```
-
+O alvo ```deploy``` também roda os testes e o servidor local da aplicação, mas também existem alvos específicos para essas tarefas: ```test``` e ```run```

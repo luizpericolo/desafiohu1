@@ -20,3 +20,15 @@ Esses comandos tem que ser o suficiente para configurar meu mac os x OU ubuntu e
 
 ***Artefatos***
 * Imagens e database de hoteis e disponibilidades estão na pasta arquivos
+
+## Rodando o projeto
+Para rodar o projeto, execute os seguintes comandos:
+
+>1. git clone git@github.com:luizpericolo/desafiohu1.git
+2. cd desafiohu1
+3. make install
+4. source venv/bin/activate
+5. make deploy
+
+Após executar esses comandos, o projeto estará diponível em ```localhost:8000```
+

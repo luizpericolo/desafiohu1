@@ -1,7 +1,7 @@
 install-dependencies: configure-virtualenv
 	@echo "Instalando as dependências do pip..."
-	@busca-venv/bin/pip install -r requirements.txt
-	@echo "Por favor execute o comando 'source busca-venv/bin/activate' para ativar o virtualenv e depois continue a instalação com 'make deploy'"
+	@venv/bin/pip install -r requirements.txt
+	@echo "Por favor execute o comando 'source venv/bin/activate' para ativar o virtualenv e depois continue a instalação com 'make deploy'"
 
 install: install-dependencies
 
@@ -11,7 +11,7 @@ install-virtualenv:
 
 configure-virtualenv: install-virtualenv
 	@echo "Configurando virtualenvwrapper..."
-	@virtualenv busca-venv
+	@virtualenv venv
 
 run:
 	@echo "Executando o servidor local..."
